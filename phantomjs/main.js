@@ -127,9 +127,12 @@ page.onLoadFinished = function(status) {
   }
 };
 
-if (options.viewportSize && 
-    (options.viewportSize.width || options.viewportSize.height)) {
-  page.viewportSize = options.viewportSize;
+// added from pending commit in grunt-lib-phantomjs:
+// https://github.com/pconerly/grunt-lib-phantomjs/commit/570657604a44c4222a5c6c99c09fb9d50671b1db
+if (options.page) {
+  for (var prop in options.page) {
+    page[prop] = options.page[prop];
+  }
 }
 
 // Actually load url.
